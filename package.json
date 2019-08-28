@@ -1,0 +1,84 @@
+{
+  "name": "react-timer",
+  "version": "1.0.0",
+  "description": "React timer component",
+  "author": "xendora",
+  "contributors": [
+    {
+      "name": "Aseem Upadhyay",
+      "email": "aseem2301@gmail.com",
+      "url": "https://github.com/bryze"
+    },
+    {
+      "name": "Rajender Joshi",
+      "email": "not.so.supertramp@gmail.com",
+      "url": "https://github.com/crup"
+    }
+  ],
+  "keywords": [
+    "react timer",
+    "react countdown",
+    "react countdown timer"
+  ],  
+  "license": "MIT",
+  "repository": "xendora/react-timer",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "test": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
+    "prepare": "yarn run build",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.4",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-external-helpers": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "@babel/preset-stage-2": "^7.0.0",
+    "@svgr/rollup": "^4.3.2",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^6.2.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "gh-pages": "^2.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^3.1.1",
+    "rollup": "^1.20.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-url": "^2.2.2"
+  },
+  "files": [
+    "dist"
+  ]
+}
