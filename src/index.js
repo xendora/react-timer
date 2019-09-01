@@ -10,23 +10,19 @@ const ReactTimer = ({
   end = 10,
   delta = 1,
   interval = 1000,
-  progression = ASCENDING,
+  progression = (value, delta) => value - delta,
   onComplete = () => { },
   onTick = () => { }
 }) => {
   const [value, setValue] = useState(start)
 
-  const computeResult = () => progression === DESCENDING ? (value - delta) : (value + delta)
-
-  const evaluateCondition = () => progression === DESCENDING ? (value <= end) : (value >= end)
-
   useEffect(() => {
     const timer = window.setInterval(() => {
-      if (evaluateCondition()) {
+      if (value === end) {
         window.clearInterval(timer)
         onComplete(value)
       } else {
-        const curr = computeResult()
+        const curr = progression(value, delta)
         setValue(curr)
         onTick(curr)
       }
