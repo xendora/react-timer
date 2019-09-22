@@ -1,34 +1,24 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const ASCENDING = 'asc'
-const DESCENDING = 'desc'
-
 const ReactTimer = ({
   children,
   start = 0,
-  end = 10,
-  delta = 1,
+  end = () => true,
   interval = 1000,
-  progression = ASCENDING,
-  onComplete = () => { },
+  onEnd = () => { },
   onTick = () => { }
 }) => {
   const [value, setValue] = useState(start)
 
-  const computeResult = () => progression === DESCENDING ? (value - delta) : (value + delta)
-
-  const evaluateCondition = () => progression === DESCENDING ? (value <= end) : (value >= end)
-
   useEffect(() => {
     const timer = window.setInterval(() => {
-      if (evaluateCondition()) {
+      if (end(value)) {
         window.clearInterval(timer)
-        onComplete(value)
+        onEnd(value)
       } else {
-        const curr = computeResult()
+        const curr = onTick(value)
         setValue(curr)
-        onTick(curr)
       }
     }, interval)
     return () => { window.clearInterval(timer) }
@@ -40,12 +30,10 @@ const ReactTimer = ({
 ReactTimer.propTypes = {
   children: PropTypes.func.isRequired,
   start: PropTypes.number.isRequired,
-  end: PropTypes.number.isRequired,
-  delta: PropTypes.number,
+  end: PropTypes.func.isRequired,
   interval: PropTypes.number,
-  progression: PropTypes.oneOf([ASCENDING, DESCENDING]),
-  onComplete: PropTypes.func,
-  onTick: PropTypes.func
+  onTick: PropTypes.func,
+  onEnd: PropTypes.func
 }
 
 export default ReactTimer
