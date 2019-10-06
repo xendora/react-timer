@@ -39,7 +39,7 @@
     "deploy": "gh-pages -d example/build",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "docz:deploy": "yarn docs:build && gh-pages -d .docz/dist"
+    "docz:deploy": "yarn docz:build && gh-pages -d .docz/dist"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",

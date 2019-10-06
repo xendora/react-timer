@@ -1,0 +1,61 @@
+---
+name: Playground
+route: /playground
+---
+
+# Playground
+
+import { Playground } from 'docz'
+import ReactTimer from '../src/index'
+
+## Incremental timer
+
+<Playground>
+    <ReactTimer
+        start={0}
+        end={(value) => value === 30}
+        onEnd={(value) => console.log('ENDED WITH VALUE', value)}
+        onTick={(value) => value + 1}
+    >
+        {(time) => <div>{time}</div>}
+    </ReactTimer>
+</Playground>
+
+## Decremental timer
+
+<Playground>
+    <ReactTimer
+        start={30}
+        end={(value) => value < 25}
+        onEnd={(value) => console.log('ENDED WITH VALUE', value)}
+        onTick={(value) => value - 1}
+    >
+        {(time) => <div>{time}</div>}
+    </ReactTimer>
+</Playground>
+
+## Infinite timer
+
+<Playground>
+    <ReactTimer
+        start={0}
+        end={() => false}
+        onEnd={(value) => console.log('ENDED WITH VALUE', value)}
+        onTick={(value) => value + 1}
+    >
+        {(time) => <div>{time}</div>}
+    </ReactTimer>
+</Playground>
+
+## Basic Clock
+
+<Playground>
+    <ReactTimer
+        start={0}
+        end={() => false}
+        onEnd={(value) => console.log('ENDED WITH VALUE', value)}
+        onTick={(value) => value + 1}
+    >
+        {() => (new Date()).toString()}
+    </ReactTimer>
+</Playground>
