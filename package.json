@@ -39,7 +39,8 @@
     "deploy": "gh-pages -d example/build",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "docz:deploy": "yarn docz:build && gh-pages -d .docz/dist"
+    "docz:deploy": "yarn docz:build && gh-pages -d .docz/dist",
+    "lint:test": "yarn eslint ./src"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -63,13 +64,11 @@
     "cross-env": "^5.1.4",
     "docz": "^2.0.0-rc.53",
     "eslint": "^6.2.2",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-config-standard-react": "^9.1.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-react": "^7.10.0",
-    "eslint-plugin-standard": "^4.0.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
     "gh-pages": "^2.1.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",

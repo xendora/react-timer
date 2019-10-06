@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
+import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 const ReactTimer = ({
   children,
@@ -7,31 +7,29 @@ const ReactTimer = ({
   end = () => true,
   interval = 1000,
   onEnd = () => { },
-  onTick = () => { }
+  onTick = () => { },
 }) => {
-  const [value, setValue] = useState(start)
-  const timerRef = useRef()
+  const [value, setValue] = useState(start);
+  const timerRef = useRef();
 
   useEffect(() => {
     if (!timerRef.current) {
       timerRef.current = window.setInterval(() => {
-        setValue(val => onTick(val))
-      }, interval)
+        setValue((val) => onTick(val));
+      }, interval);
     }
     if (end(value)) {
-      window.clearInterval(timerRef.current)
-      onEnd(value)
+      window.clearInterval(timerRef.current);
+      onEnd(value);
     }
-  }, [value])
+  }, [end, interval, onEnd, onTick, value]);
 
-  useEffect(() => {
-    return () => {
-      window.clearInterval(timerRef.current)
-    }
-  }, [])
+  useEffect(() => () => {
+    window.clearInterval(timerRef.current);
+  }, []);
 
-  return children(value)
-}
+  return children(value);
+};
 
 ReactTimer.propTypes = {
   children: PropTypes.func.isRequired,
@@ -39,7 +37,7 @@ ReactTimer.propTypes = {
   end: PropTypes.func.isRequired,
   interval: PropTypes.number,
   onTick: PropTypes.func,
-  onEnd: PropTypes.func
-}
+  onEnd: PropTypes.func,
+};
 
-export default ReactTimer
+export default ReactTimer;
