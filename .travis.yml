@@ -13,4 +13,5 @@ before_install:
 cache:
   yarn: true
 script:
+  - yarn gh-pages-clean
   - yarn docz:deploy    
