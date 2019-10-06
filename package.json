@@ -19,7 +19,7 @@
     "react timer",
     "react countdown",
     "react countdown timer"
-  ],  
+  ],
   "license": "MIT",
   "repository": "xendora/react-timer",
   "main": "dist/index.js",
@@ -36,7 +36,10 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:deploy": "yarn docz:build && gh-pages -d .docz/dist"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -58,6 +61,7 @@
     "@svgr/rollup": "^4.3.2",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.1.4",
+    "docz": "^2.0.0-rc.53",
     "eslint": "^6.2.2",
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.1.0",
@@ -67,6 +71,8 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.1.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
