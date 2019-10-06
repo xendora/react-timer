@@ -5,6 +5,8 @@ branches:
   only:
     - master
 before_install:
+  - git config --global user.name "${GITHUB_NAME}"
+  - git config --global user.email "${GITHUB_EMAIL}"
   - git remote set-url origin https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/xendora/react-timer.git
   - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
   - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
