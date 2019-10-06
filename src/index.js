@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 const ReactTimer = ({
@@ -10,19 +10,25 @@ const ReactTimer = ({
   onTick = () => { }
 }) => {
   const [value, setValue] = useState(start)
+  const timerRef = useRef()
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      if (end(value)) {
-        window.clearInterval(timer)
-        onEnd(value)
-      } else {
-        const curr = onTick(value)
-        setValue(curr)
-      }
-    }, interval)
-    return () => { window.clearInterval(timer) }
+    if (!timerRef.current) {
+      timerRef.current = window.setInterval(() => {
+        setValue(val => onTick(val))
+      }, interval)
+    }
+    if (end(value)) {
+      window.clearInterval(timerRef.current)
+      onEnd(value)
+    }
   }, [value])
+
+  useEffect(() => {
+    return () => {
+      window.clearInterval(timerRef.current)
+    }
+  }, [])
 
   return children(value)
 }
