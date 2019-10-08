@@ -7,8 +7,8 @@ branches:
 before_install:
   - git config user.name "${GITHUB_NAME}"
   - git remote set-url origin https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/xendora/react-timer.git
-  - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
   - sudo apt-get update -qq
   - sudo apt-get install -y -qq yarn
 cache:
