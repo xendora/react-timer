@@ -14,18 +14,18 @@ const ReactTimer = ({
 
   useEffect(() => {
     if (!timerRef.current) {
-      timerRef.current = window.setInterval(() => {
+      timerRef.current = setInterval(() => {
         setValue((val) => onTick(val));
       }, interval);
     }
     if (end(value)) {
-      window.clearInterval(timerRef.current);
+      clearInterval(timerRef.current);
       onEnd(value);
     }
   }, [end, interval, onEnd, onTick, value]);
 
   useEffect(() => () => {
-    window.clearInterval(timerRef.current);
+    clearInterval(timerRef.current);
   }, []);
 
   return children(value);
