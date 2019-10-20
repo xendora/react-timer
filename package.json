@@ -40,7 +40,8 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:deploy": "yarn docz:build && gh-pages -d .docz/dist",
-    "lint:test": "yarn eslint ./src"
+    "lint:test": "yarn eslint ./src",
+    "jest": "jest"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -54,15 +55,19 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-function-bind": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-env": "^7.6.3",
     "@babel/preset-flow": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.6.3",
     "@babel/preset-stage-0": "^7.0.0",
     "@babel/preset-stage-2": "^7.0.0",
     "@svgr/rollup": "^4.3.2",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.9.0",
+    "babel-polyfill": "^6.26.0",
     "cross-env": "^5.1.4",
     "docz": "^2.0.0-rc.53",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
@@ -70,10 +75,12 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
     "gh-pages": "^2.1.1",
+    "jest": "^24.9.0",
     "react": "^16.10.2",
     "react-charts": "^2.0.0-beta.4",
     "react-dom": "^16.10.2",
     "react-live": "^2.2.1",
+    "react-test-renderer": "^16.10.2",
     "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -84,5 +91,10 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ]
+  }
 }
