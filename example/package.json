@@ -1,7 +1,7 @@
 {
   "name": "react-timer-example",
   "homepage": "https://crup.github.io/react-timer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "dependencies": {

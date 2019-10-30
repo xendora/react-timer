@@ -1,12 +1,25 @@
 # react-timer
-### WIP
-
 > A minimalistic yet customizable timer component!
+
+[Live demo](https://xendora.github.io/react-timer/examples)
+
 
 <!-- [![NPM](https://img.shields.io/npm/v/react-timer.svg)](https://www.npmjs.com/package/react-timer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) -->
 
+## Installation
+### For NPM
 
-## Props (--early stage--)
+```
+npm install @xendora/react-timer
+```
+
+### For Yarn
+
+```
+yarn add @xendora/react-timer
+```
+
+## Props
 | Name  | Type |  Description |
 | ------------- | ------------- | ------------- |
 | children  | object (required)  |    Define your react component here           |
