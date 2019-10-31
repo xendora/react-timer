@@ -41,7 +41,7 @@
     "docz:build": "docz build",
     "docz:deploy": "yarn docz:build && gh-pages -d .docz/dist",
     "lint:test": "yarn eslint ./src",
-    "jest": "jest"
+    "jest:all": "jest __tests__/*"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
