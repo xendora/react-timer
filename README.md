@@ -3,8 +3,7 @@
 
 [Live demo](https://xendora.github.io/react-timer/examples)
 
-
-<!-- [![NPM](https://img.shields.io/npm/v/react-timer.svg)](https://www.npmjs.com/package/react-timer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) -->
+![Basic Timer with 100ms interval](docs/images/incremental-counter.gif "Basic Timer with 100ms interval")
 
 ## Installation
 ### For NPM
