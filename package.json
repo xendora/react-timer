@@ -1,6 +1,6 @@
 {
-  "name": "react-timer",
-  "version": "0.0.1",
+  "name": "@xendora/react-timer",
+  "version": "0.0.0-semantic-release",
   "description": "React timer component",
   "author": "xendora",
   "contributors": [
@@ -41,7 +41,9 @@
     "docz:build": "docz build",
     "docz:deploy": "yarn docz:build && gh-pages -d .docz/dist",
     "lint:test": "yarn eslint ./src",
-    "jest:all": "jest __tests__/*"
+    "jest:all": "jest __tests__/*",
+    "commit": "npx git-cz",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -64,7 +66,9 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.9.0",
     "babel-polyfill": "^6.26.0",
+    "commitizen": "^4.0.3",
     "cross-env": "^5.1.4",
+    "cz-conventional-changelog": "^3.0.2",
     "docz": "^2.0.0-rc.53",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
@@ -87,7 +91,8 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-url": "^2.2.2"
+    "rollup-plugin-url": "^2.2.2",
+    "semantic-release": "^15.13.28"
   },
   "files": [
     "dist"
@@ -96,5 +101,13 @@
     "setupFilesAfterEnv": [
       "./setupTests.js"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
