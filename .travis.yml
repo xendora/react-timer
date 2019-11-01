@@ -24,4 +24,3 @@ stages:
   - build
   - name: test
   - name: deploy
-    if: type = push AND branch = master
