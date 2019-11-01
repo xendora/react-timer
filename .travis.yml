@@ -26,3 +26,4 @@ stages:
   - name: build
   - name: test
   - name: deploy
+    if: branch = master
