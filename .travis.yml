@@ -1,8 +1,10 @@
 language: node_js
 node_js:
   - 11
-cache:
-  yarn: true
+script: 
+  - echo "$TRAVIS_EVENT_TYPE"
+  - echo "$TRAVIS_TAG"
+  - echo "$TRAVIS_BRANCH"
 jobs:
   include:
     - stage: build
@@ -26,5 +28,4 @@ stages:
   - name: build
   - name: test
   - name: deploy
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: branch = master
+    if: type = push AND branch = master
