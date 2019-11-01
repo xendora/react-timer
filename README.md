@@ -3,7 +3,8 @@
 
 [Live demo](https://xendora.github.io/react-timer/examples)
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+![Travis (.org) branch](https://img.shields.io/travis/xendora/react-timer/master?style=for-the-badge) ![NPM](https://img.shields.io/npm/l/@xendora/react-timer?style=for-the-badge)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@xendora/react-timer?style=for-the-badge) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@xendora/react-timer?style=for-the-badge)
 
 ![Basic Timer with 100ms interval](docs/images/incremental-counter.gif "Basic Timer with 100ms interval")
 
