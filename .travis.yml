@@ -13,6 +13,7 @@ jobs:
       script:
         - yarn jest:all
     - stage: deploy
+      if: fork = false
       script:
         - git config user.name "${GITHUB_NAME}"
         - git remote set-url origin https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/xendora/react-timer.git
@@ -22,4 +23,3 @@ stages:
   - name: build
   - name: test
   - name: deploy
-    if: tag =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$
