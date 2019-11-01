@@ -3,6 +3,8 @@
 
 [Live demo](https://xendora.github.io/react-timer/examples)
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 ![Basic Timer with 100ms interval](docs/images/incremental-counter.gif "Basic Timer with 100ms interval")
 
 ## Installation
