@@ -1,6 +1,7 @@
 # react-timer
 > A minimalistic yet customizable timer component!
 
+
 [Live demo](https://xendora.github.io/react-timer/examples)
 
 ![Travis (.org) branch](https://img.shields.io/travis/xendora/react-timer/master?style=for-the-badge) ![GitHub Release Date](https://img.shields.io/github/release-date/xendora/react-timer?style=for-the-badge) ![npm](https://img.shields.io/npm/v/@xendora/react-timer?style=for-the-badge) ![NPM](https://img.shields.io/npm/l/@xendora/react-timer?style=for-the-badge)
