@@ -1,34 +1,52 @@
-import { useState, useEffect, useRef } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const ReactTimer = ({
-  children,
-  start = 0,
-  end = () => true,
-  interval = 1000,
-  onEnd = () => { },
-  onTick = () => { },
-}) => {
-  const [value, setValue] = useState(start);
-  const timerRef = useRef();
+class ReactTimer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.start || 0,
+    };
+    this.timer = null;
+  }
 
-  useEffect(() => {
-    if (!timerRef.current) {
-      timerRef.current = setInterval(() => {
-        setValue((val) => onTick(val));
-      }, interval);
+  componentDidMount() {
+    const {
+      onTick,
+      interval,
+      end,
+      onEnd,
+    } = this.props;
+    this.timer = setInterval(() => {
+      this.setState(({ value }) => (
+        { value: onTick(value) }
+      ), () => {
+        const { value: currentValue } = this.state;
+        if (end(currentValue)) {
+          clearInterval(this.timer);
+          onEnd(currentValue);
+        }
+      });
+    }, interval);
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      clearInterval(this.timer);
     }
-    if (end(value)) {
-      clearInterval(timerRef.current);
-      onEnd(value);
-    }
-  }, [end, interval, onEnd, onTick, value]);
+  }
 
-  useEffect(() => () => {
-    clearInterval(timerRef.current);
-  }, []);
+  render() {
+    const { children } = this.props;
+    const { value } = this.state;
+    return children(value);
+  }
+}
 
-  return children(value);
+ReactTimer.defaultProps = {
+  interval: 1000,
+  onEnd: () => { },
+  onTick: () => { },
 };
 
 ReactTimer.propTypes = {
