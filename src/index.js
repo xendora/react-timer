@@ -12,6 +12,7 @@ class ReactTimer extends Component {
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
     this.timer = this.timer.bind(this);
+    this.onTickCallback = this.onTickCallback.bind(this);
   }
 
   componentDidMount() {
@@ -22,30 +23,44 @@ class ReactTimer extends Component {
     this.stop();
   }
 
-  timer() {
+  onTickCallback() {
+    const { value } = this.state;
     const {
-      onTick,
       end,
       onEnd,
     } = this.props;
-    const { value: startingValue } = this.state;
-    if (end(startingValue)) {
-      onEnd(startingValue);
-      return;
+    if (end(value)) {
+      this.stop();
+      onEnd(value);
     }
+  }
+
+  timer() {
+    const {
+      onTick,
+    } = this.props;
     this.setState(({ value }) => (
       { value: onTick(value) }
-    ), () => {
-      const { value: currentValue } = this.state;
-      if (end(currentValue)) {
-        this.stop();
-        onEnd(currentValue);
-      }
-    });
+    ), this.onTickCallback);
   }
 
   start() {
-    if (this.timerId) return;
+    const {
+      end,
+      onStart,
+      onEnd,
+    } = this.props;
+    const { value } = this.state;
+    if (this.timerId) {
+      onStart(value);
+      return;
+    }
+    onStart(value);
+    if (end(value)) {
+      onEnd(value);
+      this.stop();
+      return;
+    }
     const {
       interval,
     } = this.props;
@@ -53,6 +68,11 @@ class ReactTimer extends Component {
   }
 
   stop() {
+    const {
+      onStop,
+    } = this.props;
+    const { value } = this.state;
+    onStop(value);
     if (this.timerId) {
       clearInterval(this.timerId);
       this.timerId = null;
@@ -60,12 +80,18 @@ class ReactTimer extends Component {
   }
 
   reset() {
+    const {
+      onReset,
+    } = this.props;
+    const { value } = this.state;
+    onReset(value);
     const { start } = this.props;
     this.setState({
       value: start,
+    }, () => {
+      this.stop();
+      this.start();
     });
-    this.stop();
-    this.start();
   }
 
   render() {
@@ -75,11 +101,9 @@ class ReactTimer extends Component {
       start,
       stop,
       reset,
-      timerId,
     } = this;
     return children({
       value,
-      timer: timerId,
       start,
       stop,
       reset,
@@ -89,8 +113,11 @@ class ReactTimer extends Component {
 
 ReactTimer.defaultProps = {
   interval: 1000,
+  onStart: () => {},
+  onStop: () => {},
   onEnd: () => {},
   onTick: () => {},
+  onReset: () => {},
 };
 
 ReactTimer.propTypes = {
@@ -100,6 +127,9 @@ ReactTimer.propTypes = {
   interval: PropTypes.number,
   onTick: PropTypes.func,
   onEnd: PropTypes.func,
+  onStart: PropTypes.func,
+  onStop: PropTypes.func,
+  onReset: PropTypes.func,
 };
 
 export default ReactTimer;

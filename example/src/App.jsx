@@ -7,18 +7,19 @@ export default () => (
       start={30}
       end={(value) => value < 25}
       // eslint-disable-next-line no-console
+      onStart={(value) => console.log('STARTED WITH VALUE', value)}
+      // eslint-disable-next-line no-console
       onEnd={(value) => console.log('ENDED WITH VALUE', value)}
+      // eslint-disable-next-line no-console
+      onStop={(value) => console.log('STOPPED WITH VALUE', value)}
+      // eslint-disable-next-line no-console
+      onReset={(value) => console.log('RESETTED AT VALUE', value)}
       onTick={(value) => value - 1}
     >
       {({
-        value, reset, timer, start, stop,
+        value, reset, start, stop,
       }) => (
         <div>
-          <p>
-            Timer id:
-            {' '}
-            {timer}
-          </p>
           {value}
           <div>
             <button type="button" onClick={start}>start</button>
