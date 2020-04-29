@@ -7,10 +7,11 @@ class ReactTimer extends Component {
     this.state = {
       value: props.start || 0,
     };
-    this.timer = null;
+    this.timerId = null;
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
+    this.timer = this.timer.bind(this);
   }
 
   componentDidMount() {
@@ -21,36 +22,40 @@ class ReactTimer extends Component {
     this.stop();
   }
 
-  start() {
-    if (this.timer) return;
+  timer() {
     const {
       onTick,
-      interval,
       end,
       onEnd,
     } = this.props;
-    this.timer = setInterval(() => {
-      const { value: startingValue } = this.state;
-      if (end(startingValue)) {
-        onEnd(startingValue);
-        return;
+    const { value: startingValue } = this.state;
+    if (end(startingValue)) {
+      onEnd(startingValue);
+      return;
+    }
+    this.setState(({ value }) => (
+      { value: onTick(value) }
+    ), () => {
+      const { value: currentValue } = this.state;
+      if (end(currentValue)) {
+        this.stop();
+        onEnd(currentValue);
       }
-      this.setState(({ value }) => (
-        { value: onTick(value) }
-      ), () => {
-        const { value: currentValue } = this.state;
-        if (end(currentValue)) {
-          this.stop();
-          onEnd(currentValue);
-        }
-      });
-    }, interval);
+    });
+  }
+
+  start() {
+    if (this.timerId) return;
+    const {
+      interval,
+    } = this.props;
+    this.timerId = setInterval(this.timer, interval);
   }
 
   stop() {
-    if (this.timer) {
-      clearInterval(this.timer);
-      this.timer = null;
+    if (this.timerId) {
+      clearInterval(this.timerId);
+      this.timerId = null;
     }
   }
 
@@ -59,6 +64,7 @@ class ReactTimer extends Component {
     this.setState({
       value: start,
     });
+    this.stop();
     this.start();
   }
 
@@ -69,11 +75,11 @@ class ReactTimer extends Component {
       start,
       stop,
       reset,
-      timer,
+      timerId,
     } = this;
     return children({
       value,
-      timer,
+      timer: timerId,
       start,
       stop,
       reset,

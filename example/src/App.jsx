@@ -20,9 +20,11 @@ export default () => (
             {timer}
           </p>
           {value}
-          <button type="button" onClick={start}>start</button>
-          <button type="button" onClick={stop}>stop</button>
-          <button type="button" onClick={reset}>reset</button>
+          <div>
+            <button type="button" onClick={start}>start</button>
+            <button type="button" onClick={stop}>stop</button>
+            <button type="button" onClick={reset}>reset</button>
+          </div>
         </div>
       )}
     </ReactTimer>
